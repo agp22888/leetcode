@@ -26,4 +26,8 @@ class Solution:
 
 if __name__ == "__main__":
     s = Solution()
-    print(s.isPalindrome(1))
+    assert s.isPalindrome(121)
+    assert s.isPalindrome(1)
+    assert not s.isPalindrome(12)
+    assert s.isPalindrome(0)
+    assert not s.isPalindrome(-121)
