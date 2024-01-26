@@ -1,30 +1,30 @@
 class Solution:
     def convert(self, string: str, num_rows: int) -> str:
-        dim_h = int(len(string))
-        dim_v = num_rows
-        matrix = [['' for _ in range(dim_h)] for _ in range(dim_v)]
-        h, v = 0, 0
-        diag = False
-        for ch in string:
-            matrix[v][h] = ch
-            if not diag:
-                if v < dim_v - 1:
-                    v += 1
-                else:
-                    if v == 0:
-                        h += 1
-                        continue
-                    v -= 1
-                    h += 1
-                    diag = True
-            else:
-                if v == 0:
-                    v += 1
-                    diag = False
-                else:
-                    v -= 1
-                    h += 1
-        return ''.join([''.join(x) for x in matrix])
+        if num_rows < 2:
+            return string
+        if len(string) < num_rows:
+            return string
+        levels = num_rows * 2 - 2
+        result = []
+        steps = [levels, 0]
+        for i in range(num_rows):
+            self._var_step(string, result, i, steps)
+            steps[0] -= 2
+            steps[1] += 2
+        return ''.join(result)
+
+    @staticmethod
+    def _var_step(string: str,
+                  result: list[str],
+                  start: int,
+                  steps: list[int]):
+        index = 0
+        while start < len(string):
+            step = steps[index]
+            if step != 0:
+                result.append(string[start])
+            start += step
+            index = (index + 1) & 1
 
 
 if __name__ == '__main__':
