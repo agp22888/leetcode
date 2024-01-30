@@ -1,4 +1,4 @@
-from util.util import compare_list_no_order
+from util.util import compare_list_of_ints_ignore_order
 
 
 class Solution:
@@ -29,9 +29,9 @@ class Solution:
 
 if __name__ == '__main__':
     sol = Solution()
-    assert compare_list_no_order(sol.threeSum([-1, 0, 1, 2, -1, -4]), [[-1, -1, 2], [-1, 0, 1]])
-    assert compare_list_no_order(sol.threeSum([0, 1, 1]), [])
-    assert compare_list_no_order(sol.threeSum([0, 0, 0]), [[0, 0, 0]])
-    assert compare_list_no_order(sol.threeSum([-1, 0, 1, 2, -1, -4, -2, -3, 3, 0, 4]),
-                                 [[-4, 0, 4], [-4, 1, 3], [-3, -1, 4], [-3, 0, 3],
+    assert compare_list_of_ints_ignore_order(sol.threeSum([-1, 0, 1, 2, -1, -4]), [[-1, -1, 2], [-1, 0, 1]])
+    assert compare_list_of_ints_ignore_order(sol.threeSum([0, 1, 1]), [])
+    assert compare_list_of_ints_ignore_order(sol.threeSum([0, 0, 0]), [[0, 0, 0]])
+    assert compare_list_of_ints_ignore_order(sol.threeSum([-1, 0, 1, 2, -1, -4, -2, -3, 3, 0, 4]),
+                                             [[-4, 0, 4], [-4, 1, 3], [-3, -1, 4], [-3, 0, 3],
                                   [-3, 1, 2], [-2, -1, 3], [-2, 0, 2], [-1, -1, 2], [-1, 0, 1]])
