@@ -1,4 +1,4 @@
-from util.list_node import ListNode
+from util.util import ListNode, list_to_list_node
 
 
 class Solution:
@@ -26,12 +26,7 @@ class Solution:
 
 if __name__ == '__main__':
     s = Solution()
-    assert s.addTwoNumbers(ListNode.list_to_list_node([2, 4, 3]),
-                           ListNode.list_to_list_node([5, 6, 4])) == ListNode.list_to_list_node([7, 0, 8])
-    assert s.addTwoNumbers(ListNode.list_to_list_node([0]),
-                           ListNode.list_to_list_node([0])) == ListNode.list_to_list_node([0])
-    assert (s.addTwoNumbers(ListNode.list_to_list_node([9, 9, 9, 9, 9, 9, 9]),
-                            ListNode.list_to_list_node([9, 9, 9, 9])) ==
-            ListNode.list_to_list_node(
-                [8, 9, 9, 9, 0, 0, 0, 1]
-            ))
+    assert s.addTwoNumbers(list_to_list_node([2, 4, 3]), list_to_list_node([5, 6, 4])) == list_to_list_node([7, 0, 8])
+    assert s.addTwoNumbers(list_to_list_node([0]), list_to_list_node([0])) == list_to_list_node([0])
+    assert (s.addTwoNumbers(list_to_list_node([9, 9, 9, 9, 9, 9, 9]), list_to_list_node([9, 9, 9, 9])) ==
+            list_to_list_node([8, 9, 9, 9, 0, 0, 0, 1]))

@@ -1,8 +1,49 @@
-from collections import Counter
+class ListNode:
+    def __init__(self, val=0, next_node=None):
+        self.val = val
+        self.next = next_node
+
+    def __repr__(self):
+        return f'[{self.val}]'
+
+    def __str__(self):
+        return f'[{self.val}] {str(self.next)}'
+
+    def __eq__(self, other):
+        if not isinstance(other, ListNode):
+            return False
+        nodes = [self, other]
+        while any(nodes):
+            if any(nodes) and not all(nodes):
+                return False
+            if nodes[0].val != nodes[1].val:
+                return False
+            nodes[0] = nodes[0].next
+            nodes[1] = nodes[1].next
+        return True
+
+
+def list_node_to_list(head: ListNode) -> list[int]:
+    result = []
+    while head:
+        result.append(head.val)
+        head = head.next
+    return result
+
+
+def list_to_list_node(lst: list[int]) -> ListNode | None:
+    if not lst:
+        return
+    head = ListNode(lst[0])
+    tail = head
+    for val in lst[1:]:
+        tail.next = ListNode(val)
+        tail = tail.next
+    return head
 
 
 def swap_list(lst: list[int], k: int) -> list[int]:
-    if k >= 2 and k <= len(lst):
+    if 2 <= k <= len(lst):
         for i in range(0, len(lst), k):
             if len(lst) - i < k:
                 break
@@ -43,3 +84,8 @@ if __name__ == "__main__":
     assert swap_list([1, 2, 3, 4, 5, 6], 6) == [6, 5, 4, 3, 2, 1]
     assert swap_list([1, 2], 3) == [1, 2]
     assert swap_list([], 1) == []
+
+    assert list_to_list_node([1, 2, 3]) == list_to_list_node([1, 2, 3])
+    assert list_to_list_node([1, 2, 3]) != list_to_list_node([1, 2])
+    assert list_to_list_node([1, 2, 3]) != list_to_list_node([])
+    assert list_to_list_node([1, 2, 3]) != [1, 2, 3]
