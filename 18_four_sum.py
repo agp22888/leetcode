@@ -36,6 +36,41 @@ class Solution:
                 i += 1
         return result
 
+    # Generic solution
+    def fourSum_(self, nums: list[int], target: int) -> list[list[int]]:
+        nums.sort()
+        return [list(x) for x in self.n_sum(nums, target, 4, 0, len(nums) - 1)]
+
+    def n_sum(self,
+              nums: list[int],
+              target: int,
+              n: int,
+              start: int,
+              end: int) -> set[tuple] | None:
+        if n < 2:
+            return
+        result = set()
+        if n == 2:
+            while start < end:
+                if nums[start] + nums[end] > target:
+                    end -= 1
+                    continue
+                elif nums[start] + nums[end] == target:
+                    result.add((nums[start], nums[end]))
+                    start += 1
+                    while end > start and nums[start] == nums[start - 1]:
+                        start += 1
+                else:
+                    start += 1
+
+            return result
+        else:
+            for i in range(start, end - n + 2):  # end -n ?
+                sub_result = self.n_sum(nums, target - nums[i], n - 1, i + 1, end)
+                for sr in sub_result:
+                    result.add((nums[i], *sr))
+        return result
+
 
 if __name__ == "__main__":
     sol = Solution()
