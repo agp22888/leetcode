@@ -1,4 +1,4 @@
-from util.util import ListNode
+from util.util import ListNode, list_to_list_node
 from util.util import swap_list
 
 
@@ -74,37 +74,17 @@ class SolutionFast:
 
 
 if __name__ == "__main__":
-    import random
-    import time
-
-    k_bound = 5000
-    list_len_bound = 5000
-    val_bound = 1000
-    num_test = 10
     sol = SolutionFast()
-    sol.reverseKGroup(ListNode.list_to_list_node([1, 2, 3, 4, 5]), 2)
-    exit(0)
-    # for tk in range(10):
-    #     print(ListNode.listnode_to_list(sol.reverseKGroup(ListNode.list_to_listnode([659, 2997, 4319, 2337, 751, 4367, 3030, 872, 3272, 2540]), tk)))
-    #     print(swap_list([659, 2997, 4319, 2337, 751, 4367, 3030, 872, 3272, 2540], tk))
-    #     print('____')
-    # exit(0)
-    l1 = [random.randint(0, val_bound) for x in range(list_len_bound)]
-
-    for _ in range(num_test):
-        ln1 = ListNode.list_to_list_node(l1)
-        k = random.randint(0, len(l1))
-        # print(l1)
-        # print(k)
-        l1_rev = swap_list(l1, k)
-        start = time.time()
-        ln1_rev = sol.reverseKGroup(ln1, k)
-        # print(ln1_rev)
-        # print(l1_rev)
-        assert ListNode.list_node_to_list(ln1_rev) == l1_rev
-        # print(f'len(lst)={len(l1)}, run_time={time.time() - start}')
-    # ln2 = ListNode.list_to_listnode(l2)
-    # assert ListNode.listnode_to_list(ln1) == l1
-    # assert ListNode.listnode_to_list(ln2) == l2
-    # assert ListNode.listnode_to_list(sol.reverseKGroup(ln1, 4)) == [3, 2, 7, 5, 11]
-    # assert ListNode.listnode_to_list(sol.reverseKGroup(ln2, 4)) == [1]
+    tasks = [
+        ([1, 2, 3, 4, 5], 2),
+        ([1, 2, 3, 4, 5], 3)
+    ]
+    for lst, k in tasks:
+        orig = list_to_list_node(lst)
+        print(orig)
+        check = list_to_list_node(swap_list(lst, k))
+        print(check)
+        res = sol.reverseKGroup(orig, k)
+        print(res)
+        assert res == check
+        print('-------')
