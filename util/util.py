@@ -1,3 +1,7 @@
+import time
+from functools import wraps
+
+
 class ListNode:
     def __init__(self, val=0, next_node=None):
         self.val = val
@@ -71,6 +75,19 @@ def compare_list_ignore_order(lst1: list, lst2: list) -> bool:
     lst1.sort()
     lst2.sort()
     return lst1 == lst2
+
+
+def timer(func):
+    @wraps(func)
+    def inner(*args, **kwargs):
+        start_time = time.perf_counter()
+        result = func(*args, **kwargs)
+        end_time = time.perf_counter()
+        total_time = end_time - start_time
+        print(f'Function {func.__name__} - {total_time}')
+        return result
+
+    return inner
 
 
 if __name__ == "__main__":
